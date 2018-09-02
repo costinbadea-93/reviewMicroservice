@@ -55,15 +55,15 @@ public class ReviewController {
     }
 
     @CrossOrigin("http://localhost:9000/")
-    @GetMapping(value = "/deleteReview/{reviewId}")
+    @DeleteMapping(value = "/deleteReview/{reviewId}")
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
     @ApiOperation(value = "${ReviewController.getReviews}", response = Review.class)
     @ApiResponses(value = {//
             @ApiResponse(code = 400, message = "Something went wrong"), //
             @ApiResponse(code = 403, message = "Access denied"), //
             @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-    public ResponseEntity<?> deleteReview(@ApiParam("ReviewId") @RequestBody Review review) {
-        reviewService.saveReview(review);
+    public ResponseEntity<?> deleteReview(@ApiParam("ReviewId") @PathVariable int reviewId) {
+        reviewService.deleteReview(reviewId);
         return ResponseEntity.ok().body(HttpStatus.FOUND);
     }
 }
