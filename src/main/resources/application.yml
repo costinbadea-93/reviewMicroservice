@@ -2,7 +2,7 @@ spring:
   mvc:
     dispatch-options-request: true
   datasource:
-    url: jdbc:mysql://localhost:3306/disertatie
+    url: jdbc:mysql://localhost:3306/reviewsmicroservice
     username: root
     password: root
   tomcat:
@@ -12,7 +12,7 @@ spring:
     min-idle: 15
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
@@ -23,29 +23,12 @@ spring:
 #  level:
 #    org.springframework.web: DEBUG
 server:
-  port: 9000
+  port: 9001
 security:
   jwt:
     token:
       secret-key: secret-key
       expire-length: 3600000
       
-UserController:
-  signin: Authenticates user and returns its JWT token.
-  signup: Creates user and returns its JWT token
-  delete: Deletes specific user by username
-  search: Returns specific user by username
-  me: Returns current user's data
-
-EventController:
-  addEvent: Add a specific event
-  applyOnEvent: Apply as user for an event
-  getEvent: Get informations about a specific event
-
-EventLocationController:
-  addEventLocation: Add a specific location for an event
-  deleteEventLocation: Delete a specific event
-
-EventReservationController:
-  addEventReservation: Reserve a place to event
-  deleteEventReservation: Delete a specific reservation
+Review Controller:
+  getReviews: Get Reviews for a specific event.
